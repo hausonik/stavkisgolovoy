@@ -178,7 +178,7 @@ html{scroll-behavior:auto}
 <img class="mark" src="/logo.png" alt="Ставки с головой" width="34" height="34" decoding="async">
 <span>Ставки с головой</span>
 </a>
-<a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" aria-label="Открыть Telegram-канал">Telegram</a>
+<span class="nav-actions" style="display:flex;align-items:center;gap:8px"><a class="btn btn-ghost" href="/blog/" aria-label="Статьи и разборы">Статьи</a><a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" aria-label="Открыть Telegram-канал">Telegram</a></span>
 </div>
 </header>
 <main id="top">
@@ -190,11 +190,12 @@ html{scroll-behavior:auto}
 <div class="hero-cta reveal">
 <a class="btn btn-primary btn-lg" data-tg href="#" target="_blank" rel="noopener">Получить разборы в Telegram</a>
 <a class="btn btn-ghost btn-lg" data-yt href="#" target="_blank" rel="noopener">Смотреть YouTube</a>
+<a class="btn btn-ghost btn-lg" href="/blog/">Читать статьи</a>
 </div>
 <p class="hero-note reveal"><span class="dot" aria-hidden="true">●</span> Ежедневные разборы, обновления после составов и анализ результатов</p>
 <div class="stats reveal">
-<div class="stat"><b>1,1 млн+</b><span>просмотров</span></div>
-<div class="stat"><b>1 800+</b><span>подписчиков</span></div>
+<div class="stat"><b data-stat="views">1,7 млн+</b><span>просмотров</span></div>
+<div class="stat"><b data-stat="subscribers">20 000+</b><span>подписчиков</span></div>
 <div class="stat"><b>Ежедневно</b><span>новый контент</span></div>
 </div>
 </div>
@@ -286,8 +287,8 @@ html{scroll-behavior:auto}
 <h2>Контент, который смотрят и обсуждают</h2>
 </div>
 <div class="stats reveal" style="max-width:720px">
-<div class="stat"><b>1,1 млн+</b><span>просмотров за 6 дней</span></div>
-<div class="stat"><b>26+</b><span>опубликованных материалов</span></div>
+<div class="stat"><b data-stat="reach">180 000+</b><span>охват</span></div>
+<div class="stat"><b data-stat="materials">45</b><span>опубликованных материалов</span></div>
 <div class="stat"><b>Ежедневно</b><span>разборы футбола</span></div>
 </div>
 </div>
@@ -443,6 +444,9 @@ if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{
 els.forEach(function(e){io.observe(e);});
 }
 })();
+</script>
+<script>
+fetch("/stats.json?_="+Date.now()).then(function(r){return r.json()}).then(function(s){document.querySelectorAll("[data-stat]").forEach(function(el){var k=el.getAttribute("data-stat");if(s[k])el.textContent=s[k]})}).catch(function(){});
 </script>
 </body>
 </html>
